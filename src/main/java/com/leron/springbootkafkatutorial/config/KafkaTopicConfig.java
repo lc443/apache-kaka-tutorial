@@ -10,7 +10,7 @@ public class KafkaTopicConfig {
 
     @Bean
     public NewTopic leronTopic(){
-        return TopicBuilder.name("leron").build();
+        return TopicBuilder.name("leron_topic").build();
     }
 
 
