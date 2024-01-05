@@ -14,7 +14,7 @@ public class JsonKafkaProducer {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonKafkaProducer.class);
 
-    private KafkaTemplate<String, User> kafkaTemplate;
+    private final KafkaTemplate<String, User> kafkaTemplate;
 
     public JsonKafkaProducer(KafkaTemplate<String, User> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
@@ -22,7 +22,7 @@ public class JsonKafkaProducer {
 
     public void sendMessage(User data) {
         LOGGER.info(String.format("Message sent -> %s", data.toString()));
-        Message<User> message = MessageBuilder.withPayload(data).setHeader(KafkaHeaders.TOPIC, "leron_topic").build();
+        Message<User> message = MessageBuilder.withPayload(data).setHeader(KafkaHeaders.TOPIC, "leron_json").build();
         kafkaTemplate.send(message);
     }
 }
