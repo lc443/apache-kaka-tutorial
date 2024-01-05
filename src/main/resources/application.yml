@@ -5,10 +5,14 @@ spring:
       bootstrap-servers: localhost:9092
       group-id: myGroup
       auto-offset-reset: earliest # It will reset offset to earlier offset
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer # To Deserialize key in a messsage
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer # To Deserialize value in a messsage
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer # To Deserialize key in a string messsage
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer # To Deserialize value in a string messsage
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer # To deserialize Json objects
+      properties:
+        spring.json.trusted.packages: "*"
 
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # To Serialize Json objects

@@ -6,14 +6,14 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 
 @Service
-public class KafkaProducer {
+public class StringKafkaProducer {
 
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-    private static  final Logger LOGGER = LoggerFactory.getLogger(KafkaProducer.class);
+    private static  final Logger LOGGER = LoggerFactory.getLogger(StringKafkaProducer.class);
 
 
-    public KafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
+    public StringKafkaProducer(KafkaTemplate<String, String> kafkaTemplate) {
         this.kafkaTemplate = kafkaTemplate;
     }
 

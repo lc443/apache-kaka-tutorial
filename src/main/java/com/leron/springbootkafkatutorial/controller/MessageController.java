@@ -1,6 +1,6 @@
 package com.leron.springbootkafkatutorial.controller;
 
-import com.leron.springbootkafkatutorial.kafka.KafkaProducer;
+import com.leron.springbootkafkatutorial.kafka.StringKafkaProducer;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api/v1/kafka")
 public class MessageController {
 
-    private KafkaProducer kafkaProducer;
+    private StringKafkaProducer stringKafkaProducer;
 
-    public MessageController(KafkaProducer kafkaProducer) {
-        this.kafkaProducer = kafkaProducer;
+    public MessageController(StringKafkaProducer stringKafkaProducer) {
+        this.stringKafkaProducer = stringKafkaProducer;
     }
 
     //http://localhost:8080/api/v1/kafka?message=hello world
     @GetMapping("/publish")
     public ResponseEntity<String> publish(@RequestParam("message") String message ){
-        kafkaProducer.sendMessage(message);
+        stringKafkaProducer.sendMessage(message);
         return ResponseEntity.ok("Message send tp the topic");
     }
 }
